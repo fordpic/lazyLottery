@@ -87,7 +87,7 @@ contract Raffle is VRFConsumerBaseV2 {
      * 1. The time interval has passed between raffle runs
      * 2. The raffle is in the OPEN state
      * 3. The contract has ETH (ie, players)
-     * 4. (Implicit) The subscriptions is funded with LINK
+     * 4. (Implicit) The subscriptions are funded with LINK
      */
     function checkUpkeep(
         bytes memory /* checkData */
