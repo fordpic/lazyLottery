@@ -2,7 +2,7 @@
 pragma solidity ^0.8.18;
 
 import {Script} from "forge-std/Script.sol";
-import {VRFCoordinatorV2Mock} from "@chainlink/contracts/src/mocks/VRFCoordinatorV2Mock.sol";
+import {VRFCoordinatorV2Mock} from "@chainlink/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol";
 
 contract HelperConfig is Script {
     struct NetworkConfig {
@@ -17,7 +17,7 @@ contract HelperConfig is Script {
     NetworkConfig public activeNetworkConfig;
 
     constructor() {
-        if (block.chainid = 11155111) {
+        if (block.chainid == 11155111) {
             activeNetworkConfig = getSepoliaEthConfig();
         } else {
             activeNetworkConfig = getOrCreateAnvilEthConfig();
@@ -45,7 +45,7 @@ contract HelperConfig is Script {
         uint96 gasPriceLink = 1e9; // 1 gwei LINK
 
         vm.startBroadcast();
-        VRFCoordinatorV2Mock vrfCoordinatorMock = VRFCoordinatorV2Mock(
+        VRFCoordinatorV2Mock vrfCoordinatorMock = new VRFCoordinatorV2Mock(
             baseFee,
             gasPriceLink
         );
